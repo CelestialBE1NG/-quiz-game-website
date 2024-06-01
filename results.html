@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="resultsScreen">
+        <h1>Results</h1>
+        <div id="results">
+            <h2>Score:</h2>
+            <p id="finalScore"></p>
+        </div>
+        <button id="restartGame">Restart Game</button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const finalScoreElement = document.getElementById('finalScore');
+            const score = localStorage.getItem('score');
+            const totalQuestions = localStorage.getItem('totalQuestions');
+            const percentage = ((score / totalQuestions) * 100).toFixed(2);
+            finalScoreElement.innerText = `${score} out of ${totalQuestions} correct (${percentage}%)`;
+
+            document.getElementById('restartGame').addEventListener('click', () => {
+                localStorage.clear();
+                window.location.href = 'home.html';
+            });
+        });
+    </script>
+</body>
+</html>
